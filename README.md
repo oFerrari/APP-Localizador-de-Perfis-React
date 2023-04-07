@@ -1,1 +1,0 @@
-# APP-Localizador-de-Perfis-React
