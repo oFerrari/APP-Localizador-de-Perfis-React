@@ -1,50 +1,45 @@
-import { Button, CssBaseline, TextField } from "@mui/material";
+import { Button, CircularProgress, CssBaseline, FormGroup, TextField } from "@mui/material";
 import { BaseLayout } from "../../layout/BaseLayout";
 import { Theme } from "../../Theme/ThemeProvider";
-import {useQuery} from '@tanstack/react-query' 
-import { FormEvent, useRef, useState } from "react";
+import { useQuery } from '@tanstack/react-query'
+import { FormEvent, useEffect, useRef, useState } from "react";
+import {User} from '../../types/index'
 import { getUser } from "../../services/api";
+import { GitCard } from "../../components/GitCard"
 
-
-type User = {
-    avatarURL:string,
-    htmlURL:string,
-    name:string
-  }
 
 export function Home() {
 
-/* const [search,setSearch] = useState("")
-const inputRef = useRef(null)
+  const [user, setUser] = useState<User>({avatar_url:"",html_url:"",name:""})
+  const [isLoading,setLoading] = useState(false)
 
-const handleClick = () =>{
-    const username = inputRef.current
-    console.log(username)
-} */
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const inputUserName: HTMLInputElement = event.currentTarget.value
+    setLoading(true)
+    setUser(await getUser(inputUserName.value))
+    setLoading(false)
+  }
+ 
+  return (
+    <Theme>
+      <CssBaseline />
+      <BaseLayout appBarTitle='Buscador de Perfis'>
 
-const [userName, setUsername] = useState("")
+        <form onSubmit={handleSubmit}>
 
-const handleSubmit = (event:FormEvent<HTMLFormElement>) =>{
-  event.preventDefault()
-    const inputUserName:HTMLInputElement = event.currentTarget.value
-}
+          <TextField /* ref={inputRef} */ id="outlined-basic" label="Buscar" variant="outlined" sx={{
+            background: 'white',
+            color: 'white',
+            marginTop: '10px',
+          }} />
 
-    return (
-        <Theme>
-            <CssBaseline />
-            <BaseLayout appBarTitle='Buscador de Perfis'>
-              
-            <form onSubmit={handleSubmit}>
-
-            <TextField value={userName} /* ref={inputRef} */ id="outlined-basic" label="Buscar" variant="outlined" sx={{
-              background: 'white',
-              color: 'white',
-              marginTop:'10px',
-            }} />
-            
-            <Button type="submit" sx={{background:'#5e35b1',color:'white'}}>Consultar</Button>
-            </form>
-            </BaseLayout>
-        </Theme>
-    )
+          <Button type="submit" sx={{ background: '#5e35b1', color: 'white' }}>Consultar</Button>
+        </form>
+        {isLoading?(
+          <CircularProgress />
+        ) : <GitCard />}
+      </BaseLayout>
+    </Theme>
+  )
 }

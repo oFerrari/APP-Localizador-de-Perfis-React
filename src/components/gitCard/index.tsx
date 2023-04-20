@@ -1,11 +1,13 @@
-import {Dados} from '../../types/index'
+import { FormGroup } from '@mui/material'
+import {User} from '../../types/index'
 
-export function gitCard(){
+
+export function GitCard(){
     return(
         <>
-        <form action="">
-        {/* <img src={} alt="" />    */}     
-        </form>
+        <FormGroup >
+            
+        </FormGroup>
         </>
     )
 }
