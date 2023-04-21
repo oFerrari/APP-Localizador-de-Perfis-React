@@ -38,7 +38,8 @@ export function Home() {
         </form>
         {isLoading?(
           <CircularProgress />
-        ) : <Card />}
+        ) : <Card avatar_url={user.avatar_url} name={user.name} html_url={user.html_url} />
+        }
       </BaseLayout>
     </Theme>
   )
