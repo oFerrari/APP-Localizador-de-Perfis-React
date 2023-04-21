@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'
 import { FormEvent, useEffect, useRef, useState } from "react";
 import {User} from '../../types/index'
 import { getUser } from "../../services/api";
-import { GitCard } from "../../components/GitCard"
+import { Card } from "../../components/Card"
 
 
 export function Home() {
@@ -38,7 +38,7 @@ export function Home() {
         </form>
         {isLoading?(
           <CircularProgress />
-        ) : <GitCard />}
+        ) : <Card />}
       </BaseLayout>
     </Theme>
   )
