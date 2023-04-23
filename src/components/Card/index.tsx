@@ -7,6 +7,7 @@ export function Card(dados:User){
         <FormGroup >
         <img src={dados.avatar_url} alt="" />
         <p>{dados.name}</p>
+        
         </FormGroup>
         </>
     )

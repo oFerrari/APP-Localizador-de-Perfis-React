@@ -1,4 +1,4 @@
-import { Button, CircularProgress, CssBaseline, FormGroup, TextField } from "@mui/material";
+import { Button, CircularProgress, CssBaseline, TextField } from "@mui/material";
 import { BaseLayout } from "../../layout/BaseLayout";
 import { Theme } from "../../Theme/ThemeProvider";
 import { useQuery } from '@tanstack/react-query'
@@ -22,13 +22,14 @@ export function Home() {
   }
  
   return (
+    
     <Theme>
       <CssBaseline />
       <BaseLayout appBarTitle='Buscador de Perfis'>
 
         <form onSubmit={handleSubmit}>
 
-          <TextField /* ref={inputRef} */ id="outlined-basic" label="Buscar" variant="outlined" sx={{
+          <TextField id="outlined-basic" label="Buscar" variant="outlined" sx={{
             background: 'white',
             color: 'white',
             marginTop: '10px',
@@ -36,10 +37,12 @@ export function Home() {
 
           <Button type="submit" sx={{ background: '#5e35b1', color: 'white' }}>Consultar</Button>
         </form>
-        {isLoading?(
-          <CircularProgress />
-        ) : <Card avatar_url={user.avatar_url} name={user.name} html_url={user.html_url} />
+
+
+        {isLoading?
+          (<CircularProgress />)  :  (<Card avatar_url={user.avatar_url} name={user.name} html_url={user.html_url} />) 
         }
+
       </BaseLayout>
     </Theme>
   )
