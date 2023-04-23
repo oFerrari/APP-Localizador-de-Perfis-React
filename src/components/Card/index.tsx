@@ -4,7 +4,7 @@ import { blueGrey, pink } from '@mui/material/colors'
 
 export function Card(dados: User) {
     return (
-        <>
+        
             <FormGroup sx={{
                 display: "flex",
                 alignItems: "center",
@@ -15,7 +15,7 @@ export function Card(dados: User) {
                 borderRadius: '15px',
                 color: 'white',
 
-            }}>{dados.avatar_url !== "" ? (
+            }}>{dados.avatar_url !== "" || dados.name !== "" || dados.html_url !== "" ? (
                 <>
                     <img style={{ clipPath: 'circle(50%)' }} width={60} height={60} src={dados.avatar_url} alt="" />
 
@@ -23,10 +23,11 @@ export function Card(dados: User) {
 
                     <a href={dados.html_url}>Link do Perfil</a>
                 </>
-            ) : (<Typography variant="body1"></Typography>
+            ) : (<Typography variant="body1">-</Typography>
+
             )}
             </FormGroup>
 
-        </>
+        
     )
 }

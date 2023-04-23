@@ -29,26 +29,30 @@ export function Home() {
       <BaseLayout appBarTitle='Buscador de Perfis'>
       <Box sx={{
             display: "flex",
+            flexDirection:"column",
             alignItems: "center",
             justifyContent: "center",
-            margin: "300px 0",
           }}>
+            
         <form onSubmit={handleSubmit}>
 
           <TextField id="outlined-basic" name="userName" label="Buscar" variant="outlined" sx={{
             background: 'white',
             color: 'white',
             marginTop: '10px',
+            width:"100%",
+            marginBottom:"20px"
           }} />
 
-          <Button type="submit" sx={{ background: '#5e35b1', color: 'white' }}>Consultar</Button>
-        </form>
-
-
+          
         {isLoading?
           (<CircularProgress />)  :  (<Card avatar_url={user.avatar_url} name={user.name} html_url={user.html_url} />) 
         }
-</Box>
+
+        <Button type="submit" sx={{ background: '#5e35b1', color: 'white', marginTop:"150px",}}>Consultar</Button>
+        </form>
+        
+      </Box>
       </BaseLayout>
     </Theme>
     
