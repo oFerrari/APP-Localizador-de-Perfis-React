@@ -1,4 +1,4 @@
-import { Button, CircularProgress, CssBaseline, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, CssBaseline, TextField } from "@mui/material";
 import { BaseLayout } from "../../layout/BaseLayout";
 import { Theme } from "../../Theme/ThemeProvider";
 import { useQuery } from '@tanstack/react-query'
@@ -15,7 +15,8 @@ export function Home() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const inputUserName: HTMLInputElement = event.currentTarget.value
+    const form = event.currentTarget
+    const inputUserName: HTMLInputElement = form.userName
     setLoading(true)
     setUser(await getUser(inputUserName.value))
     setLoading(false)
@@ -26,10 +27,15 @@ export function Home() {
     <Theme>
       <CssBaseline />
       <BaseLayout appBarTitle='Buscador de Perfis'>
-
+      <Box sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "300px 0",
+          }}>
         <form onSubmit={handleSubmit}>
 
-          <TextField id="outlined-basic" label="Buscar" variant="outlined" sx={{
+          <TextField id="outlined-basic" name="userName" label="Buscar" variant="outlined" sx={{
             background: 'white',
             color: 'white',
             marginTop: '10px',
@@ -42,8 +48,9 @@ export function Home() {
         {isLoading?
           (<CircularProgress />)  :  (<Card avatar_url={user.avatar_url} name={user.name} html_url={user.html_url} />) 
         }
-
+</Box>
       </BaseLayout>
     </Theme>
+    
   )
 }
