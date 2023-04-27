@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, CssBaseline, TextField } from "@mui/material";
+import { Box, Button, CircularProgress, CssBaseline, TextField, Typography } from "@mui/material";
 import { BaseLayout } from "../../layout/BaseLayout";
 import { Theme } from "../../Theme/ThemeProvider";
 import { useQuery } from '@tanstack/react-query'
@@ -45,9 +45,7 @@ export function Home() {
           }} />
 
           
-        {isLoading?
-          (<CircularProgress />)  :  (<Card avatar_url={user.avatar_url} name={user.name} html_url={user.html_url} />) 
-        }
+        {isLoading ? (<CircularProgress />)  : (<Card user={user}  />) }
 
         <Button type="submit" sx={{ background: '#5e35b1', color: 'white', marginTop:"150px",}}>Consultar</Button>
         </form>

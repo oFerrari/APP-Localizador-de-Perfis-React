@@ -18,6 +18,7 @@ export function BaseLayout({ children, appBarTitle }: BaseLayoutProps) {
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column',
+                    width:'100%'
                 }}>
                 {children}
             </Box>

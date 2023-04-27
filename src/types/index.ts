@@ -3,3 +3,7 @@ export type User = {
     name:string,
     html_url:string
 }
+
+export type CardProps = {
+    user:User,
+}
